@@ -1,4 +1,4 @@
-A Software Interfact to monitor an Electric Skateboard remotely
+A Software Interface to monitor an Electric Skateboard remotely
 ==========================================================
 
 Prerequisites
