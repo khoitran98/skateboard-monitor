@@ -3,6 +3,7 @@ package com.example.mapwithmarker;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -63,21 +64,33 @@ public class menu extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.menu, container, false);
-        Button button = (Button)rootView.findViewById(R.id.button1);
-        Log.d("my tag", "my message0");
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openMap();
-            }
-        });
+
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                openMap();
+//            }
+//        });
         return inflater.inflate(R.layout.menu, container, false);
     }
-    public void openMap() {
-        Log.d("my tag", "my message");
+//    public void openMap() {
+//        Log.d("my tag", "my message");
+//        Intent intent = new Intent(getActivity(), MapsMarkerActivity.class);
+//        startActivity(intent);
+//        Log.d("my tag", "my message");
+//    }
+public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+
+    view.findViewById(R.id.button1).setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Log.d("my tag", "my message");
         Intent intent = new Intent(getActivity(), MapsMarkerActivity.class);
         startActivity(intent);
         Log.d("my tag", "my message");
-    }
+        }
+    });
+}
+
 }
