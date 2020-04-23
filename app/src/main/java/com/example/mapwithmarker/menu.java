@@ -1,5 +1,6 @@
 package com.example.mapwithmarker;
 
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -7,11 +8,13 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 
 /**
@@ -79,18 +82,36 @@ public class menu extends Fragment {
 //        startActivity(intent);
 //        Log.d("my tag", "my message");
 //    }
-public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-    super.onViewCreated(view, savedInstanceState);
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-    view.findViewById(R.id.button1).setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
+        view.findViewById(R.id.button1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("my tag", "my message");
+            Intent intent = new Intent(getActivity(), MapsMarkerActivity.class);
+            startActivity(intent);
             Log.d("my tag", "my message");
-        Intent intent = new Intent(getActivity(), MapsMarkerActivity.class);
-        startActivity(intent);
-        Log.d("my tag", "my message");
-        }
-    });
-}
+            }
+        });
+    }
+    public void smsSendMessage(View view) {
+        EditText editText = (EditText)view.findViewById(R.id.sms_message);
+        // Set the destination phone number to the string in editText.
+        String destinationAddress = editText.getText().toString();
+        // Find the sms_message view.
+        // Get the text of the SMS message.
+        String smsMessage = "hello";
+        // Set the service center address if needed, otherwise null.
+        String scAddress = null;
+        // Set pending intents to broadcast
+        // when message sent and when delivered, or set to null.
+        PendingIntent sentIntent = null, deliveryIntent = null;
+        // Use SmsManager.
+        SmsManager smsManager = SmsManager.getDefault();
+        smsManager.sendTextMessage
+                (destinationAddress, scAddress, smsMessage,
+                        sentIntent, deliveryIntent);
+    }
 
 }
