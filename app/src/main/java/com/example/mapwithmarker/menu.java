@@ -31,6 +31,8 @@ public class menu extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private EditText phone;
+    private EditText message;
 
     public menu() {
         // Required empty public constructor
@@ -66,42 +68,25 @@ public class menu extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                openMap();
-//            }
-//        });
         return inflater.inflate(R.layout.menu, container, false);
     }
-//    public void openMap() {
-//        Log.d("my tag", "my message");
-//        Intent intent = new Intent(getActivity(), MapsMarkerActivity.class);
-//        startActivity(intent);
-//        Log.d("my tag", "my message");
-//    }
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        view.findViewById(R.id.button1).setOnClickListener(new View.OnClickListener() {
+        message = (EditText)view.findViewById(R.id.sms_message);
+        phone = (EditText)view.findViewById(R.id.number);
+        view.findViewById(R.id.send).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("my tag", "my message");
-            Intent intent = new Intent(getActivity(), MapsMarkerActivity.class);
-            startActivity(intent);
-            Log.d("my tag", "my message");
+                smsSendMessage(view);
             }
         });
     }
     public void smsSendMessage(View view) {
-        EditText editText = (EditText)view.findViewById(R.id.sms_message);
         // Set the destination phone number to the string in editText.
-        String destinationAddress = editText.getText().toString();
+        String destinationAddress = phone.getText().toString();
         // Find the sms_message view.
-        // Get the text of the SMS message.
-        String smsMessage = "hello";
+        // Get the text of the SMS message.37,4275
+        String smsMessage = message.getText().toString();
         // Set the service center address if needed, otherwise null.
         String scAddress = null;
         // Set pending intents to broadcast

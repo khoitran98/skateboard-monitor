@@ -18,7 +18,7 @@ public class MySmsReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         // Get the SMS message.
-        Log.d("tag","onreceive");
+
         Bundle bundle = intent.getExtras();
         SmsMessage[] msgs;
         String strMessage = "";
@@ -40,12 +40,19 @@ public class MySmsReceiver extends BroadcastReceiver {
                     // If Android version L or older:
                     msgs[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
                 }
-                // Build the message to show.
-                strMessage += "SMS from " + msgs[i].getOriginatingAddress();
-                strMessage += " :" + msgs[i].getMessageBody() + "\n";
+                if (!msgs[i].getOriginatingAddress().equals("+14694680064")) {
+                    return;
+                }
+                // Build the message to show.55
+                strMessage += msgs[i].getMessageBody();
                 // Log and display the SMS message.
-                Log.d(TAG, "onReceive: " + strMessage);
-                Toast.makeText(context, strMessage, Toast.LENGTH_LONG).show();
+                String delims = "[ ]+";
+                String[] tokens = strMessage.split(delims);
+                Intent intentMap = new Intent(context.getApplicationContext(), MapsMarkerActivity.class);
+                intentMap.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intentMap.putExtra("LAT", tokens[0]);
+                intentMap.putExtra("LONG", tokens[1]);
+                context.startActivity(intentMap);
             }
         }
     }

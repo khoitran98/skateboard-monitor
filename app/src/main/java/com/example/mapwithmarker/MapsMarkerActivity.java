@@ -10,6 +10,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import android.util.Log;
 import android.view.View;
 
 /**
@@ -28,6 +30,7 @@ public class MapsMarkerActivity extends AppCompatActivity
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
     }
 
     /**
@@ -41,13 +44,13 @@ public class MapsMarkerActivity extends AppCompatActivity
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        // Add a marker in Sydney, Australia,
-        // and move the map's camera to the same location.
-        LatLng sydney = new LatLng(32.983716, -96.752076);
-        googleMap.addMarker(new MarkerOptions().position(sydney)
+        String latitude = getIntent().getStringExtra("LAT");
+        String longtitude = getIntent().getStringExtra("LONG");
+        double lat = Double.parseDouble(latitude);
+        double lng = Double.parseDouble(longtitude);
+        LatLng coord = new LatLng(lat, lng);
+        googleMap.addMarker(new MarkerOptions().position(coord)
                 .title("Marker"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 13.0f));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coord, 13.0f));
     }
-
-
 }

@@ -21,17 +21,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         checkForSmsPermission();
     }
-    private void disableSmsButton() {
-        Toast.makeText(this, "SMS usage disabled", Toast.LENGTH_LONG).show();
-        Button smsButton = findViewById(R.id.message_icon);
-        smsButton.setVisibility(View.INVISIBLE);
-        Button retryButton = findViewById(R.id.button_retry);
-        retryButton.setVisibility(View.VISIBLE);
-    }
-    private void enableSmsButton() {
-        Button smsButton = findViewById(R.id.message_icon);
+//    private void disableSmsButton() {
+//        Toast.makeText(this, "SMS usage disabled", Toast.LENGTH_LONG).show();
+//        Button smsButton = findViewById(R.id.message_icon);
+//        smsButton.setVisibility(View.INVISIBLE);
+//        Button retryButton = findViewById(R.id.button_retry);
+//        retryButton.setVisibility(View.VISIBLE);
+//    }
+//    private void enableSmsButton() {
+//        Button smsButton = findViewById(R.id.message_icon);
 //        smsButton.setVisibility(View.VISIBLE);
-    }
+//    }
     public void retryApp(View view) {
         Intent intent = getPackageManager()
                 .getLaunchIntentForPackage(getPackageName());
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         if (ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.SEND_SMS) !=
                 PackageManager.PERMISSION_GRANTED) {
-            Log.d("tag", "permission not granted");
+            Log.d("send", "permission not granted");
             // Permission not yet granted. Use requestPermissions().
             // MY_PERMISSIONS_REQUEST_SEND_SMS is an
             // app-defined int constant. The callback method gets the
@@ -51,12 +51,12 @@ public class MainActivity extends AppCompatActivity {
                     MY_PERMISSIONS_REQUEST_SEND_SMS);
         } else {
             // Permission already granted. Enable the SMS button.
-            enableSmsButton();
+         //   enableSmsButton();
         }
         if (ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.RECEIVE_SMS) !=
                 PackageManager.PERMISSION_GRANTED){
-            Log.d("tag", "permission not granted");
+            Log.d("receive", "permission not granted");
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.RECEIVE_SMS},
                     MY_PERMISSIONS_REQUEST_RECEIVE_SMS);
@@ -72,28 +72,29 @@ public class MainActivity extends AppCompatActivity {
                         (Manifest.permission.SEND_SMS)
                         && grantResults[0] ==
                         PackageManager.PERMISSION_GRANTED) {
+                    Log.d("tag", "Permission Send Granted");
                     // Permission was granted. Enable sms button.
-                    enableSmsButton();
+//                    enableSmsButton();
                 } else {
                     // Permission denied.
-                    Log.d("tag", "Failure to get permission");
+                    Log.d("tag", "Failure to get send permission");
                     Toast.makeText(this,
                             "Failure to get permission",
                             Toast.LENGTH_LONG).show();
                     // Disable the sms button.
-                    disableSmsButton();
+//                    disableSmsButton();
                 }
             }
             case MY_PERMISSIONS_REQUEST_RECEIVE_SMS: {
-                if (permissions[0].equalsIgnoreCase
+                if (permissions[1].equalsIgnoreCase
                         (Manifest.permission.RECEIVE_SMS)
                         && grantResults[0] ==
                         PackageManager.PERMISSION_GRANTED) {
                     // Permission was granted. Enable sms button.
-                    Log.d("tag", "Permission Granter");
+                    Log.d("tag", "Permission Receive Granted");
                 } else {
                     // Permission denied.
-                    Log.d("tag", "Failure to get permission");
+                    Log.d("tag", "Failure to get receive permission");
                     Toast.makeText(this,
                             "Failure to get permission",
                             Toast.LENGTH_LONG).show();
