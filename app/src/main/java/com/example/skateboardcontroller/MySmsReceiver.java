@@ -1,4 +1,4 @@
-package com.example.mapwithmarker;
+package com.example.skateboardcontroller;
 
 import android.annotation.TargetApi;
 import android.content.BroadcastReceiver;
@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
-import android.util.Log;
-import android.widget.Toast;
 
 public class MySmsReceiver extends BroadcastReceiver {
     private static final String TAG =
@@ -18,7 +16,6 @@ public class MySmsReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         // Get the SMS message.
-
         Bundle bundle = intent.getExtras();
         SmsMessage[] msgs;
         String strMessage = "";
@@ -40,13 +37,13 @@ public class MySmsReceiver extends BroadcastReceiver {
                     // If Android version L or older:
                     msgs[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
                 }
-                if (!msgs[i].getOriginatingAddress().equals("+14694680064")) {
+                if (!msgs[i].getOriginatingAddress().equals("")) {
                     return;
                 }
                 // Build the message to show.55
                 strMessage += msgs[i].getMessageBody();
-                // Log and display the SMS message.
                 String delims = "[ ]+";
+                // Parse the coordinate and pass it to the Map activity
                 String[] tokens = strMessage.split(delims);
                 Intent intentMap = new Intent(context.getApplicationContext(), MapsMarkerActivity.class);
                 intentMap.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

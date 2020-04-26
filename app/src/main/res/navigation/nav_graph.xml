@@ -3,20 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/menu2">
+    app:startDestination="@id/main_menu">
 
-    <activity
-        android:id="@+id/mapsMarkerActivity"
-        android:name="com.example.mapwithmarker.MapsMarkerActivity"
-        android:label="activity_maps"
-        tools:layout="@layout/activity_maps" />
     <fragment
         android:id="@+id/menu2"
-        android:name="com.example.mapwithmarker.menu"
+        android:name="com.example.skateboardcontroller.menu"
         android:label="menu"
-        tools:layout="@layout/menu" >
+        tools:layout="@layout/menu" />
+    <fragment
+        android:id="@+id/main_menu"
+        android:name="com.example.skateboardcontroller.main_menu"
+        android:label="main_menu"
+        tools:layout="@layout/main_menu" >
         <action
-            android:id="@+id/action_menu2_to_mapsMarkerActivity"
-            app:destination="@id/mapsMarkerActivity" />
+            android:id="@+id/action_main_menu_to_menu2"
+            app:destination="@id/menu2" />
     </fragment>
 </navigation>

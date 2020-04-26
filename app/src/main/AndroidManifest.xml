@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mapwithmarker">
+    package="com.example.skateboardcontroller">
 
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <receiver
-            android:name=".MySmsReceiver"
+            android:name="com.example.skateboardcontroller.MySmsReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -20,14 +21,16 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".MainActivity">
+        <activity
+            android:name="com.example.skateboardcontroller.MainActivity"
+            android:label="Skateboard Controller">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MapsMarkerActivity"></activity>
+        <activity android:name="com.example.skateboardcontroller.MapsMarkerActivity"></activity>
 
         <meta-data
             android:name="com.google.android.gms.version"

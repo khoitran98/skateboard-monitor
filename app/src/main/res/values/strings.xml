@@ -1,7 +1,4 @@
 <resources>
-    <string name="app_name">Map With Marker</string>
-    <string name="title_activity_maps">Map with Marker</string>
-
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">Skateboard Controller</string>
+    <string name="title_activity_maps">Skateboard Controller</string>
 </resources>

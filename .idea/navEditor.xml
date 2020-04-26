@@ -8,13 +8,13 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
-                  <entry key="mapsMarkerActivity">
+                  <entry key="main_menu">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="97" />
-                            <option name="y" value="49" />
+                            <option name="x" value="-113" />
+                            <option name="y" value="-107" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -25,18 +25,9 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-194" />
-                            <option name="y" value="-11" />
+                            <option name="x" value="55" />
+                            <option name="y" value="86" />
                           </Point>
-                        </option>
-                        <option name="myPositions">
-                          <map>
-                            <entry key="action_menu2_to_mapsMarkerActivity">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
